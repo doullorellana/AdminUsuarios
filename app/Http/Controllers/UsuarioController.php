@@ -40,7 +40,7 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usuario $usuario, $id)
+    public function show($id)
     {
         $usuario = Usuario::find($id);
         return $usuario;
@@ -57,16 +57,24 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $usuario -> nombre = $request -> nombre;
+        $usuario -> apellido = $request -> apellido;
+        $usuario -> correo = $request -> correo;
+        $usuario -> fecha_registro = $request -> fecha_registro;
+        $usuario -> save();
+        return "El usuario se actualizó correctamente.";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $usuario -> delete();
+        return "El usuario se eliminó correctamente.";
     }
 }
