@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/usuario', function () {
+    return view('usuario',['usuario' => 'Doull', 'pass' => '123']);
+});
+
+Route::get('/subviews', function () {
+    return view('layout.main');
+});
+
+Route::get('/listado', [UsuarioController::class,'index']);
